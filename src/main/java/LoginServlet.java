@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "LoginServlet", urlPatterns = "/login")
+@WebServlet(name = "LoginServlet", urlPatterns = "/login.jsp")
 public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/login.jsp").forward(request, response);
@@ -23,9 +23,9 @@ public class LoginServlet extends HttpServlet {
             //setting cookie to expire in 5 mins
             loginCookie.setMaxAge(5*60);
             response.addCookie(loginCookie);
-            response.sendRedirect("LoginSuccess.jsp");
+            response.sendRedirect("/profile.jsp");
         }else {
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.jsp");
             PrintWriter out = response.getWriter();
             out.println("<font color=red>Either user name or password is wrong.</font>");
             try {
